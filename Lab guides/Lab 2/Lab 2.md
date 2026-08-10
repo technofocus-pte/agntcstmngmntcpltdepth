@@ -1,8 +1,12 @@
-**Lab 2: Usage-based billing and Copilot Credits**
+# Lab 2: Usage-based billing and Copilot Credits
 
 *Microsoft 365 Copilot — cost management and Copilot Credits*
 
-[TABLE]
+| Field | Detail |
+|---|---|
+| Course | Microsoft 365 Copilot administration |
+| Estimated time | 40 minutes |
+| Environment | Microsoft 365 admin center (test tenant) |
 
 # Lab objectives
 
@@ -38,7 +42,7 @@ By the end of this lab, you will be able to:
 - A billing method available in the tenant (prepaid capacity packs or a
   pay-as-you-go Azure subscription).
 
-[TABLE]
+> **Note:** Microsoft recommends using the role with the fewest permissions necessary. The **Global administrator** role is highly privileged and should be used only when no other role can complete the task.
 
 # Background: key concepts
 
@@ -53,13 +57,24 @@ Microsoft 365 admin center, where you can allocate credits, set access
 policies and limits, choose prepaid or pay-as-you-go billing, and use
 budgets, alerts, and hard caps to prevent overspending.
 
-[TABLE]
+> **Disclaimer — all values shown are for demonstration only**
+>
+> Every credit amount, spending limit, alert threshold, policy name, per-user limit, notification recipient, and reset cadence used throughout this lab — including the **500-credit policy limit**, the **200-credit pool with a 100-credit per-user cap**, the **40-credit-per-user calculation for a 5-person pilot group**, and the **80% alert threshold** — is illustrative only.
+>
+> When configuring these settings in your own environment, base every value on your organization's actual team size, historical usage patterns, and budget requirements. **Do not copy the numbers or names used in this lab directly into a production tenant.**
 
 ## Roles and permissions
 
-[TABLE]
+| Role | Can do | Cannot do |
+| --- | --- | --- |
+| **Global administrator** | Add, select, or change billing methods; set billing methods in policies; perform all policy tasks. | — |
+| **Billing administrator** | Add, select, or change billing methods; set billing methods in policies. | — |
+| **AI administrator** | Create spending policies; manage limits and alerts; view the Cost Management dashboard. | Set or modify the billing method. |
+| **License administrator** | Create spending policies; manage limits and alerts; view the Cost Management dashboard. | Set or modify the billing method. |
 
-[TABLE]
+> **Tip**
+>
+> Before each exercise, check which role is required. **Exercises 1 and 4** (billing method changes) require a **Global administrator** or **Billing administrator** role. **Exercises 2 and 3** can be completed by an **AI administrator** or **License administrator**.
 
 # Exercise 1 — Activate the default spending policy
 
