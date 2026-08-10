@@ -1,7 +1,9 @@
-Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio
-and Dynamics 365 agents before you commit to a rollout.
+# Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio
+Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio and Dynamics 365 agents before you commit to a rollout.
 
-[TABLE]
+| **Duration** | **Cost** |
+| --- | --- |
+| 30 minutes | Free (no license needed) |
 
 # Overview
 
@@ -15,8 +17,11 @@ volume so you can plan a budget before you buy.
 agent, model low, medium, and high-volume scenarios, add a variance
 buffer, and export a PDF for stakeholder review.
 
-[TABLE]
-
+> **What the estimator is — and is not**
+>
+> **✅ Use it for:** Budget planning, comparing configurations, understanding feature cost drivers, and generating a PDF for procurement.
+>
+> **❌ Do not use it as:** A binding price quote, a guaranteed forecast, or a replacement for official Microsoft pricing. It provides forward-looking estimates only.
 Rate reference used throughout: **1 Copilot Credit = $0.01 USD**. Rates
 are subject to change; always confirm against your current licensing
 agreement.
@@ -47,7 +52,13 @@ meaningful output when your assumptions reflect real-world use.
 Credit consumption is driven by five levers. Understanding these makes
 your estimates defensible to both technical and finance stakeholders.
 
-[TABLE]
+| **Driver** | **What it means for your estimate** |
+| --- | --- |
+| **Agent type** | Custom B2E/B2C agents versus specialized Dynamics 365 agents (Sales, Service, Finance, Supply Chain). Each has its own calculation structure. |
+| **Traffic** | Number of users × interaction frequency per month. The single biggest lever — get this right first. |
+| **Knowledge** | Responses grounded in knowledge sources. Tenant graph grounding (assumes Enhanced Search) and non-tenant grounding (Dataverse, web, files) each carry different rates. |
+| **Orchestration** | Classic keyword triggers versus generative orchestration (AI chooses the response path). Generative orchestration consumes more. |
+| **Tools and flows** | Actions and automated flows the agent invokes add incremental consumption on top of the base response. |
 
 **Offset:** Credits are negated for users who already hold Microsoft 365
 Copilot licenses — be sure to enter those counts to avoid
@@ -114,11 +125,22 @@ Orient yourself to the main regions of the window:
 >
 > ![](./media/image8.png)
 
-[TABLE]
+> **Tip**
+>
+> Nothing you enter is saved to Microsoft or requires a sign-in. The estimator runs entirely in your browser, so you can experiment freely and reset at any time using the **Reset** control in the top toolbar.
 
 ## Exercise 3 — Select an agent category and type
 
-[TABLE]
+> **Disclaimer**
+>
+> Microsoft 365 is currently marked **“Coming Soon”** in the Copilot Credit Estimator and is not yet available for selection. This lab therefore uses **Copilot Studio agents** — **Custom customer-facing agent** and **Custom employee-facing agent** — as the working examples.
+>
+> When Microsoft 365 becomes available, the same two-step process will apply:
+>
+> 1. **Step 1:** Select your products.
+> 2. **Step 2:** Add your agents.
+>
+> The workflow is expected to remain unchanged, with only new **Microsoft 365 Copilot agent types** becoming available for selection.
 
 ![](./media/image9.png)
 
@@ -238,16 +260,59 @@ lower.
 The calculation below shows exactly how the estimator reaches 45,000
 knowledge credits from the inputs above.
 
-[TABLE]
+> **INPUTS**
+>
+> Users: **1,000**  
+> Interactions per user/month: **30**  
+> Responses from knowledge: **50%**  
+> Tenant graph grounding: **10%** *(all other grounding = 90%)*
+>
+> **STEP 1 — Total monthly interactions**
+>
+> `1,000 users × 30 = 30,000 interactions/month`
+>
+> **STEP 2 — Responses that use knowledge**
+>
+> `30,000 × 50% = 15,000 knowledge-grounded responses`
+>
+> **STEP 3 — Split into grounding types**
+>
+> **Tenant graph grounding (10%)**
+>
+> `15,000 × 10% = 1,500 responses`  
+> `1,500 × 12 credits = 18,000 credits`
+>
+> **Non-tenant grounding (90%)**
+>
+> `15,000 × 90% = 13,500 responses`  
+> `13,500 × 2 credits = 27,000 credits`
+>
+> **STEP 4 — Total knowledge credits**
+>
+> **18,000 + 27,000 = 45,000 credits**
 
-[TABLE]
+> **Key insight**
+>
+> Tenant graph grounding costs roughly **6× more per response** than non-tenant grounding. That is why **1,500 tenant-grounded responses cost 18,000 credits**, while **13,500 non-tenant responses cost only 27,000 credits**.
+>
+> The two levers that have the greatest impact on this total are:
+>
+> - The **percentage of responses that use knowledge**
+> - The **percentage of responses that use tenant graph grounding**
 
 ### Agent tools/actions
 
 Fill in only the row that matches what you actually configured. For the
 HR Helpdesk agent, that is **Model Context Protocol**.
 
-[TABLE]
+| **Tool type** | **How many tools configured?** | **How often invoked per interaction?** |
+| --- | --- | --- |
+| Prompt | *(leave blank)* | *(leave blank)* |
+| Agent flow | *(leave blank)* | *(leave blank)* |
+| Computer use | *(leave blank)* | *(leave blank)* |
+| Custom connector | *(leave blank)* | *(leave blank)* |
+| **Model Context Protocol** | **1** | **0.01** |
+| REST API | *(leave blank)* | *(leave blank)* |
 
 ![](./media/image19.png)
 
@@ -259,7 +324,24 @@ only 1 out of every 100 interactions.
 The estimator reaches 750 agent-tool credits, and a new total of 45,750,
 as follows.
 
-[TABLE]
+> **MCP INPUTS**
+>
+> Tools configured: **1**  
+> Invocations per interaction: **0.01**
+>
+> **CALCULATION**
+>
+> Total interactions: `1,000 × 30 = 30,000`  
+> MCP invocations: `30,000 × 0.01 × 1 = 300`  
+> Credits: `300 × 2.5 = 750 credits`
+>
+> **NEW TOTAL**
+>
+> Knowledge: **45,000 credits**  
+> Agent tools: **750 credits**  
+> Agent flows: **0 credits**
+>
+> **Total: 45,750 credits**
 
 ### Agent flows
 
@@ -343,7 +425,9 @@ produces a shareable output directly from the top toolbar.
     procurement stakeholders as the supporting document for your credit
     purchase.
 
-[TABLE]
+> **Note**
+>
+> The exported PDF is a **forward-looking planning estimate**, not a binding quote. Regenerate and re-export it whenever your traffic assumptions or agent configuration change, and confirm current rates against your licensing agreement before making a purchase.
 
 # Scenario bracketing — estimating table
 
@@ -356,7 +440,12 @@ The figures below are placeholders to show the shape of a completed
 estimate — your own numbers come from the live tool. They illustrate how
 bracketing plus a buffer produces a defensible budget range.
 
-[TABLE]
+| **Scenario** | **Users** | **Credits / mo** | **Est. USD** |
+| --- | ---: | ---: | ---: |
+| Launch (low) | 150 | 18,000 | $180 |
+| Steady state (medium) | 400 | 52,000 | $520 |
+| Peak / seasonal (high) | 650 | 91,000 | $910 |
+| **Budget = medium + 20%** | — | **62,400** | **$624** |
 
 ## Exercise 8 — Explore estimates across multiple categories (try it yourself)
 
@@ -367,7 +456,9 @@ once — for example, a Copilot Studio helpdesk agent alongside Dynamics
 add multiple agents, configure each one individually, and the right
 panel aggregates them into a single organizational total.
 
-[TABLE]
+> **Why this matters**
+>
+> Aggregating agents across departments or business units gives finance **one combined credit total** to budget against, instead of a scattered set of per-team estimates. It also helps you identify **which category is the largest cost driver** before committing to a rollout.
 
 ### Try it yourself
 
@@ -405,11 +496,18 @@ Questions to reflect on as you try it:
 - How does the combined total compare to the sum you would have guessed
   for each agent separately?
 
-[TABLE]
+> **Tip**
+>
+> Because the estimator runs entirely in your browser and saves nothing, you can **add, duplicate, and delete agents freely**. Use the **Reset** control to clear everything and start a fresh multi-agent scenario whenever you like.
 
 # Best practices
 
-[TABLE]
+| **✅ Do** | **❌ Don't** |
+| --- | --- |
+| Base volumes on 3–6 months of historical data. | Use aspirational volumes without validation. |
+| Test low, medium, and high scenarios to bracket cost. | Assume 100% feature adoption on day one. |
+| Add a 10–20% buffer for variance. | Ignore seasonal surges (holiday support, quarter-end). |
+| Update estimates quarterly and involve real end users. | Treat the estimate as a guaranteed pricing quote. |
 
 # After you buy: monitor actual versus estimated
 
