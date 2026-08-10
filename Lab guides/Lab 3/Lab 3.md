@@ -1,4 +1,4 @@
-# Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio
+# Lab 3: Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio
 Estimate monthly Copilot Credit consumption for Microsoft Copilot Studio and Dynamics 365 agents before you commit to a rollout.
 
 | **Duration** | **Cost** |
