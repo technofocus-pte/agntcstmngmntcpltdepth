@@ -1,8 +1,15 @@
+# Lab 1: Setting up and managing Pay-as-you-go billing in Microsoft 365 copilot
+
 Create a Pay-as-you-go billing policy from scratch, then connect,
 monitor, and retire it across its full lifecycle in the Microsoft 365
 admin center.
 
-[TABLE]
+|  |  |
+|---|---|
+| **Estimated duration** | 30 minutes |
+| **Level** | Intermediate |
+| **Required role** | Global administrator or Billing administrator |
+| **Environment** | Microsoft 365 test/lab tenant with an Azure subscription |
 
 ## Lab overview
 
