@@ -340,7 +340,7 @@ There is no maximum number of policies you can create.*
 1.  Navigate to the **Create group** option listed below **Specific
     group**. The Create group window will pop up.
 
-![](./dc94077ef944c66d6a7b08ef271966b91eca8afc.png)
+![](./new1.png)
 
 2.  On the **Basics** step, configure the group name and settings:
 
@@ -351,21 +351,21 @@ There is no maximum number of policies you can create.*
 
 - Click **Next**.
 
-![](./27a572e1329046b76ef3d3a8034e18a1a0d2ea0b.png)
+![](./new2.png)
 
-![](./0a5898c4abde641cced2115bdeeef9ef5aac733e.png)
+![](./new3.png)
 
 3.  On the **Settings** step, skip the role assignment and click
     **Next**.
 
-![](./6e8e717de973ab42dcbe1c57e48085a772b4aa96.png)
+![](./new4.png)
 
 4.  On the **Finish** step, review the details, then click **Create
     group** to finish adding the group.
 
-![](./a427193cefd7528377ef3ec60f097c3bb2a67267.png)
+![](./new5.png)
 
-[TABLE]
+> **Tip:** You can only target specific individuals through security groups. To include a specific user, add them to a security group first, then select that group in the policy.
 
 ## Step 2 — Set limits and alerts
 
@@ -405,7 +405,7 @@ There is no maximum number of policies you can create.*
 
 ![](./media/image39.png)
 
-[TABLE]
+> **Note:** A policy always uses prepaid credits first—whether from capacity packs or P3 plans—before moving to pay-as-you-go.
 
 ## Step 3 — Select agents and services
 
@@ -505,7 +505,7 @@ administrators cannot change the billing method.)
 
 ![](./media/image54.png)
 
-[TABLE]
+> **Tip:** Alerts start at the threshold you set and repeat weekly until the month resets or you adjust the limits—useful for catching fast spenders early.
 
 # Exercise 4 — Delete or disable a spending policy
 
@@ -567,19 +567,23 @@ administrators cannot change the billing method.)
   memberships, they may still have access through another applicable
   policy after deletion.
 
-[TABLE]
+> **Note:** This is different from capacity-allocation scenarios in other admin experiences, where capacity can be reallocated to specific environments. In Microsoft 365 admin center usage-based billing, spending policies are limit-based and do not allocate or reserve credits.
 
 # Exercise 5 (optional) — Understand policy assignment for overlapping users
 
 *A user can belong to several groups and therefore several policies.
 This exercise helps you predict which single policy the system assigns.*
 
-[TABLE]
+> **Note:** This value is for demonstration purposes only. The threshold you configure should be based on your organization's requirements, actual usage patterns, and budget—not copied directly from this lab.
 
 When a user falls under more than one policy for the same service, the
 system assigns exactly one policy using this order of precedence:
 
-[TABLE]
+| Order | Tie-breaker rule |
+|---|---|
+| 1 | Highest per-user limit. |
+| 2 | If tied, the largest overall policy limit. |
+| 3 | If still tied, the most recently created policy. |
 
 - If a policy has no per-user limit set, its overall policy limit is
   used as the per-user value for this comparison.
