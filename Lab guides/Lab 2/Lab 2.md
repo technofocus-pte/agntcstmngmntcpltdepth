@@ -1,10 +1,11 @@
-**Lab 2 guide**
-
-**Usage-based billing and Copilot Credits**
+# Lab 2 guide: Usage-based billing and Copilot Credits
 
 *Microsoft 365 Copilot — cost management and Copilot Credits*
 
-[TABLE]
+| Field | Detail |
+|-------|--------|
+| Estimated time | 40 minutes |
+| Environment | Microsoft 365 admin center (test tenant) |
 
 By the end of this lab, you will be able to:
 
@@ -38,7 +39,7 @@ By the end of this lab, you will be able to:
 - A billing method available in the tenant (prepaid capacity packs or a
   pay-as-you-go Azure subscription).
 
-[TABLE]
+> **Note:** Microsoft recommends using the role with the fewest permissions needed. **Global administrator** is highly privileged—use it only when no other role can complete the task.
 
 # Background: key concepts
 
@@ -53,13 +54,20 @@ Microsoft 365 admin center, where you can allocate credits, set access
 policies and limits, choose prepaid or pay-as-you-go billing, and use
 budgets, alerts, and hard caps to prevent overspending.
 
-[TABLE]
+> **Disclaimer — all values shown are for demonstration only**
+>
+> Every credit amount, spending limit, alert threshold, policy name, per-user limit, notification recipient, and reset cadence used throughout this lab—including the 500-credit policy limit, the 200-credit pool with a 100-credit per-user cap, the 40-credit-per-user calculation for a 5-person pilot group, and the 80% alert threshold—is illustrative only. When configuring these settings in your own environment, base every value on your organization's actual team size, historical usage patterns, and budget requirements. Do not copy the numbers or names used in this lab directly into a production tenant.
 
 ## Roles and permissions
 
-[TABLE]
+| Role | Can do | Cannot do |
+|---|---|---|
+| **Global administrator** | Add, select, or change billing methods; set billing methods in policies; perform all policy tasks. | — |
+| **Billing administrator** | Add, select, or change billing methods; set billing methods in policies. | — |
+| **AI administrator** | Create spending policies; manage limits and alerts; view the Cost Management dashboard. | Set or modify the billing method. |
+| **License administrator** | Create spending policies; manage limits and alerts; view the Cost Management dashboard. | Set or modify the billing method. |
 
-[TABLE]
+> **Tip:** Before each exercise, check which role is required. Exercises 1 and 4 (billing method changes) require Global administrator or Billing administrator. Exercises 2 and 3 can be completed by AI administrator or License administrator.
 
 # Exercise 1 — Activate the default spending policy
 
@@ -229,12 +237,31 @@ Add recipient** and choose the new user from the dropdown.
 
 ![](./media/image19.png)
 
-[TABLE]
+> **One important difference to notice: there are two budget limits to set up**
+>
+> **1. Set the monthly spending limit for this policy** — The total combined credit budget for the entire All Users default policy. Across everyone covered by this policy, combined usage cannot exceed the set amount (for example, 200 credits per month).
+>
+> **2. Select the monthly spending limit for users** — A per-person sub-limit that applies to each individual user within that same policy. No single person can spend more than this amount per month (for example, 100 credits), even if the overall pool has room left.
+>
+> **How they work together**
+>
+> *Think of it as a bucket with a lid, plus a rule about how fast any one person can scoop from it:*
+>
+> - **Total bucket size:** 200 credits per month (shared across all users on this policy).
+> - **Per-person scoop limit:** 100 credits per month (no individual can exceed this, regardless of how much is left in the bucket).
+>
+> With these numbers, at most **2 people** could fully exhaust the pool in a month (2 × 100 = 200), or many people could use smaller amounts that add up to 200 total.
 
 This raises a practical question: if you have a pilot group of 5 users
 sharing a 200-credit pool, what should the per-user limit be?
 
-[TABLE]
+> **Worked example: baseline for a 5-person pilot group**
+>
+> With a 200-credit total pool and 5 people sharing it, the starting point is simple division—though the exact number depends on how strict you want to be.
+>
+> **Baseline: even split — 200 ÷ 5 = 40 credits per user.**
+>
+> Set the per-user limit to **40 credits**. This guarantees that no single person can consume more than their fair one-fifth share. Even if all 5 people hit their individual cap simultaneously, total usage tops out at exactly 200 credits (5 × 40 = 200), matching your pool exactly with zero risk of one or two heavy users draining the whole amount before others get a turn.
 
 14. To target specific groups or change which services are governed,
     select **Customize setup configuration** before activating. Based on
@@ -267,7 +294,7 @@ sharing a 200-credit pool, what should the per-user limit be?
 
 ![](./media/image27.png)
 
-[TABLE]
+> **Note:** The alert recipient field is pre-populated with the signed-in administrator and suggests administrators previously selected for billing notifications.
 
 ### Checkpoint
 
@@ -282,7 +309,7 @@ There is no maximum number of policies you can create.*
 
 ### Required role: AI administrator, License administrator, Global administrator, or Billing administrator
 
-[TABLE]
+> **Note:** The tenant-level limit you set when activating the default policy applies to all users. Each additional policy has its own independent limit and does not inherit the tenant-level limit.
 
 ## Step 1 — Scope users and groups
 
